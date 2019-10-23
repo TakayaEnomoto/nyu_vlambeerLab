@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/scenes/vlambeerLab.unity
+    guid: 99e1524eedddc4347ac28489ddde68eb
+  m_configObjects: {}

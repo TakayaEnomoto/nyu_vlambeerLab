@@ -26,9 +26,13 @@ public class Pathmaker : MonoBehaviour {
     private float randomRight;
     private float randomLeft;
 
+    public static Collider[] hitColliders;
+
+
+
     private void Start()
     {
-        counterMax = Random.Range(50, 91);
+        counterMax = Random.Range(50, 60);
         randomRight = Random.Range(.1f, .25f);
         randomLeft = Random.Range(.4f, .5f);
     }
@@ -36,6 +40,14 @@ public class Pathmaker : MonoBehaviour {
     void Update() {
         if (counter < counterMax)
         {
+            transform.position = (transform.position + (transform.forward * 5));
+            int collideMask = 1 << 2;
+            hitColliders = Physics.OverlapSphere(transform.position, 2f, collideMask);
+            if (hitColliders.Length == 1)
+            {
+                Debug.Log("ahhh");
+                return;
+            }
             float ran = Random.Range(0.0f, 1.0f);
             if (ran < randomRight)
                 transform.Rotate(0, 90, 0);
@@ -45,34 +57,34 @@ public class Pathmaker : MonoBehaviour {
             {
                 Instantiate(pathMakerShpere, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             }
-
+            for(int i = 0; i < hitColliders.Length; i++)
+            {
+                print(hitColliders[i].gameObject.name);
+            }
             Instantiate(floorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            transform.position = (transform.position + (transform.forward * 5));
-            counter ++;
-            totalFloor ++;
+            counter++;
+            totalFloor++;
         }
         else
         {
             Destroy(gameObject);
         }
 
-        if (totalFloor >= 700)
+        if (totalFloor >= 400)
             Destroy(gameObject);
+        //		If counter is less than 50, then:
+        //			Generate a random number from 0.0f to 1.0f;
+        //			If random number is less than 0.25f, then rotate myself 90 degrees;
+        //				... Else if number is 0.25f-0.5f, then rotate myself -90 degrees;
+        //				... Else if number is 0.99f-1.0f, then instantiate a pathmakerSpherePrefab clone at my current position;
+        //			// end elseIf
 
-
-//		If counter is less than 50, then:
-//			Generate a random number from 0.0f to 1.0f;
-//			If random number is less than 0.25f, then rotate myself 90 degrees;
-//				... Else if number is 0.25f-0.5f, then rotate myself -90 degrees;
-//				... Else if number is 0.99f-1.0f, then instantiate a pathmakerSpherePrefab clone at my current position;
-//			// end elseIf
-
-//			Instantiate a floorPrefab clone at current position;
-//			Move forward ("forward", as in, the direction I'm currently facing) by 5 units;
-//			Increment counter;
-//		Else:
-//			Destroy my game object; 		// self destruct if I've made enough tiles already
-	}
+        //			Instantiate a floorPrefab clone at current position;
+        //			Move forward ("forward", as in, the direction I'm currently facing) by 5 units;
+        //			Increment counter;
+        //		Else:
+        //			Destroy my game object; 		// self destruct if I've made enough tiles already
+    }
 
 } 
 

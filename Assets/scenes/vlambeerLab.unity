@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5575b50532c45f4984a0392f98e35f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 4113209856346078, guid: 65a6189e1bac1f549afc3dc95369929d,
+  floorPrefab: {fileID: 1680193034015120, guid: 65a6189e1bac1f549afc3dc95369929d,
     type: 3}
-  pathMakerShpere: {fileID: 7109866842286843213, guid: c63d07bee134b6f48ab4555661016613,
+  pathMakerShpere: {fileID: 7028467558779476091, guid: c63d07bee134b6f48ab4555661016613,
     type: 3}
 --- !u!135 &28544033
 SphereCollider:

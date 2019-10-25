@@ -19,12 +19,13 @@ public class Pathmaker : MonoBehaviour {
     //	Declare a public Transform called floorPrefab, assign the prefab in inspector;
     //	Declare a public Transform called pathmakerSpherePrefab, assign the prefab in inspector; 		// you'll have to make a "pathmakerSphere" prefab later
     private int counter = 0;
-    public Transform floorPrefab;
-    public Transform pathMakerShpere;
+    public GameObject floorPrefab;
+    public GameObject pathMakerShpere;
     public static int totalFloor;
     private int counterMax;
     private float randomRight;
     private float randomLeft;
+    public List<GameObject> floorList = new List<GameObject>();
 
     public static Collider[] hitColliders;
 
@@ -44,10 +45,8 @@ public class Pathmaker : MonoBehaviour {
             int collideMask = 1 << 2;
             hitColliders = Physics.OverlapSphere(transform.position, 2f, collideMask);
             if (hitColliders.Length == 1)
-            {
-                Debug.Log("ahhh");
                 return;
-            }
+
             float ran = Random.Range(0.0f, 1.0f);
             if (ran < randomRight)
                 transform.Rotate(0, 90, 0);
@@ -57,11 +56,9 @@ public class Pathmaker : MonoBehaviour {
             {
                 Instantiate(pathMakerShpere, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             }
-            for(int i = 0; i < hitColliders.Length; i++)
-            {
-                print(hitColliders[i].gameObject.name);
-            }
             Instantiate(floorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            GameObject floor = Instantiate(floorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            floorList.Add(floor);
             counter++;
             totalFloor++;
         }
@@ -70,7 +67,7 @@ public class Pathmaker : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (totalFloor >= 400)
+        if (totalFloor >= 500)
             Destroy(gameObject);
         //		If counter is less than 50, then:
         //			Generate a random number from 0.0f to 1.0f;

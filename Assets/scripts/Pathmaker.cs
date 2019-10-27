@@ -20,6 +20,9 @@ public class Pathmaker : MonoBehaviour {
     //	Declare a public Transform called pathmakerSpherePrefab, assign the prefab in inspector; 		// you'll have to make a "pathmakerSphere" prefab later
     private int counter = 0;
     public GameObject floorPrefab;
+    public GameObject floorPrefab1;
+    public GameObject floorPrefab2;
+    public GameObject floorPrefab3;
     public GameObject pathMakerShpere;
     public static int totalFloor;
     private int counterMax;
@@ -64,6 +67,14 @@ public class Pathmaker : MonoBehaviour {
             {
                 Instantiate(pathMakerShpere, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             }
+
+            float dom = Random.Range(.0f, 1.0f);
+            if (dom <= .33f)
+                floorPrefab = floorPrefab1;
+            else if (dom > .33f && dom <= .66f)
+                floorPrefab = floorPrefab2;
+            else if (dom > .66f)
+                floorPrefab = floorPrefab3;
             Instantiate(floorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             GameObject floor = Instantiate(floorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             floorList.Add(floor);
@@ -75,7 +86,7 @@ public class Pathmaker : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (totalFloor >= 500)
+        if (totalFloor >= 600)
             Destroy(gameObject);
         //		If counter is less than 50, then:
         //			Generate a random number from 0.0f to 1.0f;

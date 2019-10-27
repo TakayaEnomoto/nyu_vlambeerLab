@@ -105,6 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5575b50532c45f4984a0392f98e35f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 1680193034015120, guid: 65a6189e1bac1f549afc3dc95369929d,
+  floorPrefab: {fileID: 0}
+  floorPrefab1: {fileID: 1680193034015120, guid: 65a6189e1bac1f549afc3dc95369929d,
+    type: 3}
+  floorPrefab2: {fileID: 3840335869469166289, guid: d5375aa5c4a4cfe42953e1e0c41ed1d2,
+    type: 3}
+  floorPrefab3: {fileID: 6450344445440064074, guid: aec2741201eb02e4588d8c47db6c05be,
     type: 3}
   pathMakerShpere: {fileID: 7028467558779476091}

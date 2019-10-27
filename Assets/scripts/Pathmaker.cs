@@ -25,28 +25,36 @@ public class Pathmaker : MonoBehaviour {
     private int counterMax;
     private float randomRight;
     private float randomLeft;
-    public List<GameObject> floorList = new List<GameObject>();
 
+    public static Pathmaker me;
+    public static List<GameObject> floorList = new List<GameObject>();
+    public static Vector3 sum;
     public static Collider[] hitColliders;
 
 
-
+    private void Awake()
+    {
+        me = this;
+    }
     private void Start()
     {
+        sum = Vector3.zero;
         counterMax = Random.Range(50, 60);
         randomRight = Random.Range(.1f, .25f);
         randomLeft = Random.Range(.4f, .5f);
     }
 
     void Update() {
-        if (counter < counterMax)
+        if (counter <= counterMax)
         {
             transform.position = (transform.position + (transform.forward * 5));
             int collideMask = 1 << 2;
-            hitColliders = Physics.OverlapSphere(transform.position, 2f, collideMask);
-            if (hitColliders.Length == 1)
+            hitColliders = Physics.OverlapSphere(transform.position, .5f, collideMask);
+            if (hitColliders.Length == 2)
+            {
+                Debug.Log("return");
                 return;
-
+            }
             float ran = Random.Range(0.0f, 1.0f);
             if (ran < randomRight)
                 transform.Rotate(0, 90, 0);
